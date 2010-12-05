@@ -96,3 +96,10 @@ let g:rubycomplete_rails = 1
 " unimpaired plugin need for text bubbling
 vmap <C-j> ]egv
 vmap <C-k> [egv
+
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd bufwritepost vimrc_brun.vim source $MYVIMRC
+endif
+
