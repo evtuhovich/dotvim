@@ -81,7 +81,7 @@ nmap <F3> :TlistToggle <CR>
 
 set tw=120
 
-set list listchars=tab:»·,trail:·
+set list listchars=tab:▸·,trail:·,eol:¬
 highlight SpecialKey guifg=#333333
 
 language en_GB.UTF8
