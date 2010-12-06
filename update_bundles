@@ -20,7 +20,7 @@ git_bundles = [
   "git://github.com/tsaleh/vim-supertab.git",
   "git://github.com/tsaleh/vim-tcomment.git",
   "git://github.com/vim-ruby/vim-ruby.git",
-  "https://github.com/scrooloose/syntastic.git"
+  "https://github.com/scrooloose/syntastic.git",
   "http://github.com/tsaleh/taskpaper.vim.git",
   "http://github.com/vim-scripts/matchit.zip.git",
   "http://github.com/vim-scripts/taglist.vim.git",
