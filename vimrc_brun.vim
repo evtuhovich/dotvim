@@ -45,6 +45,7 @@ set autowriteall
 set autowrite
 
 set statusline=%<%f%h%m%r%=%{&ff}\ %l,%c%V\ %P
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set guitablabel=%-200.400f
 
 " avoid hit enter stupud messages
@@ -81,10 +82,12 @@ nmap <F3> :TlistToggle <CR>
 set tw=120
 
 set list listchars=tab:»·,trail:·
+highlight SpecialKey guifg=#333333
 
 language en_GB.UTF8
 
 " let g:git_no_map_default = 0
+set tags=./tags,tags,/home/brun/.vim/tags
 
 let g:rsenseHome="$RSENSE_HOME"
 
