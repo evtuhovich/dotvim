@@ -100,6 +100,8 @@ let g:rubycomplete_rails = 1
 vmap <C-j> ]egv
 vmap <C-k> [egv
 
+vmap <C-l> >gv
+vmap <C-h> <gv
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
