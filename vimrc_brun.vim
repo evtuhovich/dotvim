@@ -108,3 +108,4 @@ if has("autocmd")
   autocmd bufwritepost vimrc_brun.vim source $MYVIMRC
 endif
 
+nmap <Leader>f :FufCoverageFile<CR>
