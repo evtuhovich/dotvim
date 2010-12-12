@@ -109,3 +109,5 @@ if has("autocmd")
 endif
 
 nmap <Leader>f :FufCoverageFile<CR>
+
+command Irb :ConqueTermSplit irb
