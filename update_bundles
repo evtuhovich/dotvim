@@ -66,3 +66,9 @@ vim_org_scripts.each do |name, script_id, script_type|
     file << open("http://www.vim.org/scripts/download_script.php?src_id=#{script_id}").read
   end
 end
+
+# update helptags
+Dir["*/doc"].map { |dir| %Q[-c "helptags #{dir}"]}.each_slice(8) do |params|
+  puts %Q[vim #{params.join(' ')} -c"quit"]
+  `vim #{params.join(' ')} -c"quit"`
+end
