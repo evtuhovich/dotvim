@@ -31,6 +31,8 @@ autocmd	BufRead	Vagrantfile	set ts=2 sw=2 ft=ruby expandtab
 autocmd BufRead	*.rb set expandtab
 autocmd	BufRead	*.cs	set ts=4 sw=4 fenc=utf8
 autocmd User Rails/config/locales/*.yml set ai
+autocmd User Rails.javascript* set noexpandtab
+
 
 set wildmenu
 set wildmode=list:longest
