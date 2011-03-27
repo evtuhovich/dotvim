@@ -33,6 +33,7 @@ autocmd	BufRead	*.cs	set ts=4 sw=4 fenc=utf8
 autocmd User Rails/config/locales/*.yml set ai
 autocmd User Rails.javascript* set noexpandtab
 
+autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
 
 set wildmenu
 set wildmode=list:longest
