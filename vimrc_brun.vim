@@ -90,7 +90,7 @@ set tw=120
 set list listchars=tab:▸·,trail:·,eol:¬
 highlight SpecialKey guifg=#333333
 
-language en_GB.UTF8
+language C
 
 " let g:git_no_map_default = 0
 set tags=./tags,tags,/home/brun/.vim/tags
