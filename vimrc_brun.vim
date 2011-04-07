@@ -16,6 +16,8 @@ call pathogen#runtime_append_all_bundles()
 
 set background=light
 colorscheme solarized
+"colorscheme vividchalk
+
 set ignorecase
 syntax on
 set backspace=indent,eol,start
@@ -50,7 +52,6 @@ set viminfo='20,<50,s10,h,rA:,rB:
 set autowriteall
 set autowrite
 
-set statusline=%<%f%h%m%r%=%{&ff}\ %l,%c%V\ %P
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set guitablabel=%-200.400f
 
@@ -114,6 +115,7 @@ if has("autocmd")
   autocmd bufwritepost vimrc_brun.vim source $MYVIMRC
 endif
 
-nmap <Leader>f :FufCoverageFile<CR>
+nmap <Leader>a :FufCoverageFile<CR>
+let g:fuf_maxMenuWidth = 140
 
 command Irb :ConqueTermSplit irb
