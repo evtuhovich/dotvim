@@ -84,7 +84,7 @@ nmap <F3> :TlistToggle <CR>
 
 " trailing whitspaces
 :highlight ExtraWhitespace ctermbg=red guibg=red
-:autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+:autocmd BufWinEnter *.rb,*.js,*.haml,*.html match ExtraWhitespace /\s\+$/
 
 set tw=120
 
@@ -119,3 +119,7 @@ nmap <Leader>a :FufCoverageFile<CR>
 let g:fuf_maxMenuWidth = 140
 
 command Irb :ConqueTermSplit irb
+
+map <silent> <F4> :call BufferList()<CR>
+let g:BufferListWidth = 25
+let g:BufferListMaxWidth = 50

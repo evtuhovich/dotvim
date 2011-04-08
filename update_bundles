@@ -29,6 +29,7 @@ git_bundles = [
   "https://github.com/vim-scripts/FuzzyFinder.git",
   "https://github.com/vim-scripts/Conque-Shell.git",
   "https://github.com/altercation/vim-colors-solarized.git",
+  "https://github.com/vim-scripts/bufferlist.vim.git"
 #  "http://github.com/generalov/KeyboardLayoutSwitcher.git"
 ]
 
