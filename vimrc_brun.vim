@@ -22,8 +22,17 @@ set ignorecase
 syntax on
 set backspace=indent,eol,start
 
-set directory=~/.vim/swap
+set noswapfile
 set backupdir=~/.vim/backup
+
+if has("folding")
+	set foldenable
+	set foldmethod=syntax
+	set foldlevel=5
+"	set foldnestmax=2
+	set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
+	highlight Folded  guifg=#FFFFFF
+endif
 
 set fileencodings=utf8,cp1251
 autocmd	BufRead	*.xml,*.aspx,*.htm,*.html,*.config,*.ascx	set ts=2 sw=2 ft=xml
@@ -35,6 +44,7 @@ autocmd BufRead	*.rb set expandtab
 autocmd	BufRead	*.cs	set ts=4 sw=4 fenc=utf8
 autocmd User Rails/config/locales/*.yml set ai
 autocmd User Rails.javascript* set noexpandtab
+autocmd User Rails/*.haml set foldmethod=indent
 
 autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
 
@@ -60,15 +70,6 @@ set cmdheight=2
 
 " show status always
 set laststatus=2
-
-if has("folding")
-	set foldenable
-	set foldmethod=syntax
-	set foldlevel=5
-"	set foldnestmax=2
-	set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-	highlight Folded  guifg=#FFFFFF
-endif
 
 let g:rails_dbext=0
 let g:omni_sql_no_default_maps=1
@@ -123,3 +124,6 @@ command Irb :ConqueTermSplit irb
 map <silent> <F4> :call BufferList()<CR>
 let g:BufferListWidth = 25
 let g:BufferListMaxWidth = 50
+
+
+let g:Gitv_OpenHorizontal = 1

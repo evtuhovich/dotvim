@@ -24,18 +24,17 @@ git_bundles = [
   "http://github.com/vim-scripts/matchit.zip.git",
   "http://github.com/vim-scripts/taglist.vim.git",
   "http://github.com/vimoutliner/vimoutliner.git",
-  "https://github.com/vim-scripts/delimitMate.vim.git",
   "https://github.com/vim-scripts/L9.git",
   "https://github.com/vim-scripts/FuzzyFinder.git",
   "https://github.com/vim-scripts/Conque-Shell.git",
   "https://github.com/altercation/vim-colors-solarized.git",
-  "https://github.com/vim-scripts/bufferlist.vim.git"
+  "https://github.com/vim-scripts/bufferlist.vim.git",
+  "https://github.com/gregsexton/gitv.git"
 #  "http://github.com/generalov/KeyboardLayoutSwitcher.git"
 ]
 
 vim_org_scripts = [
   ["IndexedSearch", "7062",  "plugin"],
-  ["gist",          "12732", "plugin"],
   ["jquery",        "12107", "syntax"],
 ]
 
