@@ -23,7 +23,9 @@ syntax on
 set backspace=indent,eol,start
 
 set noswapfile
-set backupdir=~/.vim/backup
+"set backupdir=~/.vim/backup
+set nobackup
+set nowritebackup
 
 if has("folding")
 	set foldenable
@@ -43,7 +45,7 @@ autocmd	BufRead	Vagrantfile	set ts=2 sw=2 ft=ruby expandtab
 autocmd BufRead	*.rb set expandtab
 autocmd	BufRead	*.cs	set ts=4 sw=4 fenc=utf8
 autocmd User Rails/config/locales/*.yml set ai
-autocmd User Rails.javascript* set noexpandtab
+autocmd User Rails.javascript* set expandtab ts=4 sw=4 sts=4
 autocmd User Rails/*.haml set foldmethod=indent
 
 autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
@@ -127,3 +129,5 @@ let g:BufferListMaxWidth = 50
 
 
 let g:Gitv_OpenHorizontal = 1
+
+let g:rails_ctags_arguments="--exclude=log/* --exclude=tmp/* --exclude=www/*"
