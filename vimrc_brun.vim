@@ -130,4 +130,6 @@ let g:BufferListMaxWidth = 50
 
 let g:Gitv_OpenHorizontal = 1
 
-let g:rails_ctags_arguments="--exclude=log/* --exclude=tmp/* --exclude=www/*"
+let g:rails_ctags_arguments="--exclude=log --exclude=tmp --exclude=www --exclude=public"
+
+let ruby_no_expensive = 1
