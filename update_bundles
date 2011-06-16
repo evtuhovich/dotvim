@@ -29,7 +29,8 @@ git_bundles = [
   "https://github.com/vim-scripts/Conque-Shell.git",
   "https://github.com/altercation/vim-colors-solarized.git",
   "https://github.com/vim-scripts/bufferlist.vim.git",
-  "https://github.com/gregsexton/gitv.git"
+  "https://github.com/gregsexton/gitv.git",
+  "https://github.com/kchmck/vim-coffee-script.git"
 #  "http://github.com/generalov/KeyboardLayoutSwitcher.git"
 ]
 
