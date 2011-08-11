@@ -46,6 +46,7 @@ autocmd BufRead	*.rb set expandtab
 autocmd	BufRead	*.cs	set ts=4 sw=4 fenc=utf8
 autocmd User Rails/config/locales/*.yml set ai
 autocmd User Rails.javascript* set expandtab ts=4 sw=4 sts=4
+autocmd User Rails/*.coffee set expandtab ts=2 sw=2 sts=2
 autocmd User Rails/*.haml set foldmethod=indent
 
 autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
@@ -92,7 +93,7 @@ nmap <F3> :TlistToggle <CR>
 set tw=120
 
 set list listchars=tab:▸·,trail:·,eol:¬
-highlight SpecialKey guifg=#333333
+highlight SpecialKey guifg=#333333 ctermfg=DarkGray
 
 language C
 
