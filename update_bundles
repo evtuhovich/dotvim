@@ -2,7 +2,8 @@
 
 git_bundles = [
   "git://github.com/astashov/vim-ruby-debugger.git",
-  "git://github.com/msanders/snipmate.vim.git",
+  "git://github.com/akitaonrails/snipmate.vim.git",
+  "git://github.com/akitaonrails/snipmate-snippets.git",
   "git://github.com/scrooloose/nerdtree.git",
   "git://github.com/timcharper/textile.vim.git",
   "git://github.com/tpope/vim-cucumber.git",
@@ -30,8 +31,9 @@ git_bundles = [
   "https://github.com/vim-scripts/bufferlist.vim.git",
   "https://github.com/gregsexton/gitv.git",
   "https://github.com/kchmck/vim-coffee-script.git",
-  "https://github.com/mileszs/ack.vim.git"
+  "https://github.com/mileszs/ack.vim.git",
 #  "http://github.com/generalov/KeyboardLayoutSwitcher.git"
+  "git://github.com/vim-scripts/AutoFenc.vim.git",
 ]
 
 vim_org_scripts = [
@@ -69,6 +71,8 @@ vim_org_scripts.each do |name, script_id, script_type|
     file << open("http://www.vim.org/scripts/download_script.php?src_id=#{script_id}").read
   end
 end
+
+#	check'n'make some helpful links
 
 # update helptags
 Dir["*/doc"].map { |dir| %Q[-c "helptags #{dir}"]}.each_slice(8) do |params|

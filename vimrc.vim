@@ -36,7 +36,7 @@ if has("folding")
 	highlight Folded  guifg=#FFFFFF
 endif
 
-set fileencodings=utf8,cp1251
+set fileencodings=koi8-r,utf8,cp1251
 autocmd	BufRead	*.xml,*.aspx,*.htm,*.html,*.config,*.ascx	set ts=2 sw=2 ft=xml
 autocmd	BufRead	*.php	set ts=2 sw=2 fenc=cp1251
 autocmd	BufRead	*.sql	set ts=4 sw=4
@@ -92,7 +92,7 @@ nmap <F3> :TlistToggle <CR>
 
 set tw=120
 
-set list listchars=tab:▸·,trail:·,eol:¬
+"set list listchars=tab:▸·,trail:·,eol:¬
 highlight SpecialKey guifg=#333333 ctermfg=DarkGray
 
 language C
