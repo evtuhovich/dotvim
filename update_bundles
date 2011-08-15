@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 git_bundles = [
+	"https://github.com/tpope/vim-pathogen.git",
   "git://github.com/astashov/vim-ruby-debugger.git",
   "git://github.com/akitaonrails/snipmate.vim.git",
   "git://github.com/akitaonrails/snipmate-snippets.git",

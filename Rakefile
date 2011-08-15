@@ -7,11 +7,11 @@ end
 desc "Setting up the directories"
 task :setup	do
 	puts "Updating the bundles with the script"
-	puts `./update_bundles`
+	system './update_bundles'
 	cd 'bundle' do
-		puts "Setting up the Snipmate:"
+		puts "Setting up Snipmate:"
 		d = 'snipmate'
-		puts "Linking 'snipmate.vim' to #{d}"
+		puts "Linking 'snipmate.vim' to '#{d}'"
 		ln_s('snipmate.vim', d) unless File.exist? d
 		cd d do
 			puts "Making snippets' directory"
@@ -19,16 +19,33 @@ task :setup	do
 			mkdir d unless File.exist? d
 		end
 		cd 'snipmate-snippets' do
-			puts `rake`
+			system 'rake'
+		end
+	end
+
+	puts 'Setting up Pathogen:'
+	n = File.join 'autoload', 'pathogen.vim'
+	nn = File.expand_path File.join 'bundle', 'vim-pathogen', n
+	puts "Linking #{nn} ->  #{n}"
+	begin
+		ln_sf nn, 'autoload'
+	rescue => error
+		if error.class == Errno::ENOENT
+			mkdir 'autoload'
+			retry
+		else
+			puts error.inspect
 		end
 	end
 end
 
-desc "Cleaning everyting up"
+desc "Removing all generated/downloaded content"
 task :clean do
-	puts 'Removing the generated dirs'
-	d = 'bundle'
-	rm_rf d, :verbose => true  if File.exist? d
+	puts 'Removing the generated content:'
+	['bundle', File.join('autoload', 'pathogen.vim')].each do |d|
+		puts "  -> #{d}"
+		remove_entry_secure d if File.exist? d
+	end
 end
 
 desc "Rebuild everything"
