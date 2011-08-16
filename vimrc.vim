@@ -8,7 +8,6 @@ set incsearch
 set t_Co=256
 set ts=2
 set sw=2
-"Asdfasdf
 
 filetype off
 call pathogen#helptags()
@@ -50,6 +49,8 @@ autocmd User Rails/*.coffee set expandtab ts=2 sw=2 sts=2
 autocmd User Rails/*.haml set foldmethod=indent
 
 autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
+
+autocmd FileType ruby set expandtab
 
 set wildmenu
 set wildmode=list:longest
