@@ -24,10 +24,11 @@ task :setup	do
 	end
 
 	puts 'Setting up Pathogen:'
-	n = File.expand_path File.join 'bundle', 'vim-pathogen', 'autoload', 'pathogen.vim'
-	puts "Linking #{n} -> autoload"
+	n = File.join 'autoload', 'pathogen.vim'
+	nn = File.expand_path File.join 'bundle', 'vim-pathogen', n
+	puts "Linking #{nn} ->  #{n}"
 	begin
-		ln_sf n, 'autoload'
+		ln_sf nn, 'autoload'
 	rescue => error
 		if error.class == Errno::ENOENT
 			mkdir 'autoload'
