@@ -28,10 +28,13 @@ task :setup	do
 	nn = File.expand_path File.join 'bundle', 'vim-pathogen', n
 	puts "Linking #{nn} ->  #{n}"
 	begin
-		ln_sf nn, 'autoload'
+		ln_sf nn, n
 	rescue => error
 		if error.class == Errno::ENOENT
-			mkdir 'autoload'
+			mkdir_p File.dirname n
+			retry
+		elsif error.class == Errno::ENOTDIR
+			remove_entry_secure File.dirname n
 			retry
 		else
 			puts error.inspect
@@ -44,7 +47,10 @@ task :clean do
 	puts 'Removing the generated content:'
 	['bundle', File.join('autoload', 'pathogen.vim')].each do |d|
 		puts "  -> #{d}"
-		remove_entry_secure d if File.exist? d
+		begin
+			remove_entry_secure d
+		rescue
+		end
 	end
 end
 
