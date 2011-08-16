@@ -27,22 +27,22 @@ set nobackup
 set nowritebackup
 
 if has("folding")
-	set foldenable
-	set foldmethod=syntax
-	set foldlevel=5
-"	set foldnestmax=2
-	set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-	highlight Folded  guifg=#FFFFFF
+  set foldenable
+  set foldmethod=syntax
+  set foldlevel=5
+  " set foldnestmax=2
+  set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
+  highlight Folded  guifg=#FFFFFF
 endif
 
 set fileencodings=koi8-r,utf8,cp1251
-autocmd	BufRead	*.xml,*.aspx,*.htm,*.html,*.config,*.ascx	set ts=2 sw=2 ft=xml
-autocmd	BufRead	*.php	set ts=2 sw=2 fenc=cp1251
-autocmd	BufRead	*.sql	set ts=4 sw=4
-autocmd	BufRead	*.rjs,*.rxml	set ts=2 sw=2 ft=ruby
-autocmd	BufRead	Vagrantfile	set ts=2 sw=2 ft=ruby expandtab
-autocmd BufRead	*.rb set expandtab
-autocmd	BufRead	*.cs	set ts=4 sw=4 fenc=utf8
+autocmd BufRead *.xml,*.aspx,*.htm,*.html,*.config,*.ascx set ts=2 sw=2 ft=xml
+autocmd BufRead *.php set ts=2 sw=2 fenc=cp1251
+autocmd BufRead *.sql set ts=4 sw=4
+autocmd BufRead *.rjs,*.rxml  set ts=2 sw=2 ft=ruby
+autocmd BufRead Vagrantfile set ts=2 sw=2 ft=ruby expandtab
+autocmd BufRead *.rb set expandtab
+autocmd BufRead *.cs  set ts=4 sw=4 fenc=utf8
 autocmd User Rails/config/locales/*.yml set ai
 autocmd User Rails.javascript* set expandtab ts=4 sw=4 sts=4
 autocmd User Rails/*.coffee set expandtab ts=2 sw=2 sts=2
@@ -91,9 +91,9 @@ nmap <F3> :TlistToggle <CR>
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :autocmd BufWinEnter *.rb,*.js,*.haml,*.html match ExtraWhitespace /\s\+$/
 
-set tw=120
+set tw=78
 
-"set list listchars=tab:▸·,trail:·,eol:¬
+"set list listchars=tab:Б√╦б╥,trail:б╥,eol:б╛
 highlight SpecialKey guifg=#333333 ctermfg=DarkGray
 
 language C
@@ -135,3 +135,52 @@ let g:Gitv_OpenHorizontal = 1
 let g:rails_ctags_arguments="--exclude=log --exclude=tmp --exclude=www --exclude=public"
 
 let ruby_no_expensive = 1
+
+" The following is used when vim ai an e-mail editor for use in Russia (I've
+" inherited it from some famous Vim hacker...)
+
+" Hайти все последовательности цитирования в письме и составить из них опцию
+" comments для удобства форматирования
+function! SetQuoteComments () range abort
+  let word char = '[A-Za-zёЁю-Ъ]' " Sorry, for koi8-r
+  let &comments = "n:>"
+  let start line = a:firstline
+  let end line = a:lastline
+  let current line = start line
+  while current line <= end line
+    let test string = getline(current line)
+    let maxlen = strlen(test string)
+    let match end pos = matchend(test string,'^[\t>]*'.wordchar.'\{1,5}>')
+    while match end pos > 0
+      let prefix = matchstr(test string,word char.'\{1,5}>')
+      let test string = strpart(test string,match endpos,maxlen)
+      let match end pos = matchend(test string,'^[\s>]*'.wordchar.'\{1,5}>')
+      if match(&comments,':'.prefix.'\($\|,\)') < 0
+        let &comments = &comments.',n:'.prefix
+      endif
+    endwhile
+    let current line = current line + 1
+  endwhile
+endfunction
+
+" au BufNewFile,BufRead <тут варианты почты>  %call SetQuoteComments()
+
+" (на самом деле у меня вызов чуть более навороченный:
+
+" Опции, локальные для буфера, передёргиваем при загрузке или создании буфера
+if &filetype == "mail" || &filetype == "news"
+  %call SetQuoteComments()
+  set tw=78
+endif
+
+" Turn off the toolbar
+set go-=T
+
+" Line numbering makes the thing quite stylish
+set nu
+
+" Line wrap and visual bell
+set nowrap
+set visualbell
+set ai
+
