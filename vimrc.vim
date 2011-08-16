@@ -184,3 +184,8 @@ set nowrap
 set visualbell
 set ai
 
+" Syntastic statusline
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
