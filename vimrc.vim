@@ -35,7 +35,7 @@ if has("folding")
   highlight Folded  guifg=#FFFFFF
 endif
 
-set fileencodings=koi8-r,utf8,cp1251
+set fileencodings=utf8,koi8-r,cp1251
 autocmd BufRead *.xml,*.aspx,*.htm,*.html,*.config,*.ascx set ts=2 sw=2 ft=xml
 autocmd BufRead *.php set ts=2 sw=2 fenc=cp1251
 autocmd BufRead *.sql set ts=4 sw=4
@@ -96,7 +96,7 @@ set tw=78
 "set list listchars=tab:Б√╦б╥,trail:б╥,eol:б╛
 highlight SpecialKey guifg=#333333 ctermfg=DarkGray
 
-language C
+"language C
 
 " let g:git_no_map_default = 0
 set tags=./tags,tags,/home/brun/.vim/tags
