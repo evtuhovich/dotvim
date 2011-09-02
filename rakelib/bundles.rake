@@ -26,7 +26,7 @@ namespace :bundles do
 
   directory cfg.bundles_dir
 
-  desc "Updating the plugins"
+  desc "Update the plugins"
   task :update => cfg.bundles_dir do
 
     puts "Updating the plugins"

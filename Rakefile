@@ -1,10 +1,11 @@
 require 'rake'
+
 desc "Default"
 task :default => :setup do
   puts "The directories are set up successfully"
 end
 
-desc "Setting up the directories"
+desc "Settup the plugins' directories"
 task :setup => "bundles:update" do
   cd 'bundle' do
     puts "Setting up Snipmate:"
@@ -40,7 +41,11 @@ task :setup => "bundles:update" do
   end
 end
 
-desc "Removing all generated/downloaded content"
+# A convenience stub 
+desc "Update the installed plugins"
+task :update => :setup
+
+desc "Remove all generated/downloaded content"
 task :clean do
   puts 'Removing the generated content:'
   ['bundle', File.join('autoload', 'pathogen.vim')].each do |d|
