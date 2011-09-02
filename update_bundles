@@ -34,7 +34,7 @@ git_bundles = [
   "https://github.com/kchmck/vim-coffee-script.git",
   "https://github.com/mileszs/ack.vim.git",
 #  "http://github.com/generalov/KeyboardLayoutSwitcher.git"
-  "git://github.com/vim-scripts/AutoFenc.vim.git",
+  "https://github.com/argent-smith/AutoFenc.vim.git",
 ]
 
 vim_org_scripts = [

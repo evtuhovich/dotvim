@@ -35,14 +35,13 @@ if has("folding")
   highlight Folded  guifg=#FFFFFF
 endif
 
-set fileencodings=utf8,koi8-r,cp1251
 autocmd BufRead *.xml,*.aspx,*.htm,*.html,*.config,*.ascx set ts=2 sw=2 ft=xml
-autocmd BufRead *.php set ts=2 sw=2 fenc=cp1251
+autocmd BufRead *.php set ts=2 sw=2
 autocmd BufRead *.sql set ts=4 sw=4
 autocmd BufRead *.rjs,*.rxml  set ts=2 sw=2 ft=ruby
 autocmd BufRead Vagrantfile set ts=2 sw=2 ft=ruby expandtab
 autocmd BufRead *.rb set expandtab
-autocmd BufRead *.cs  set ts=4 sw=4 fenc=utf8
+autocmd BufRead *.cs  set ts=4 sw=4
 autocmd User Rails/config/locales/*.yml set ai
 autocmd User Rails.javascript* set expandtab ts=4 sw=4 sts=4
 autocmd User Rails/*.coffee set expandtab ts=2 sw=2 sts=2
