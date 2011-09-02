@@ -52,8 +52,6 @@ namespace :bundles do
         end
       end
 
-      #	check'n'make some helpful links
-
       # update helptags
       Dir["*/doc"].map { |dir| %Q[-c "helptags #{dir}"]}.each_slice(8) do |params|
         puts %Q[vim #{params.join(' ')} -c"quit"]
