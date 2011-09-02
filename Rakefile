@@ -5,9 +5,7 @@ task :default => :setup do
 end
 
 desc "Setting up the directories"
-task :setup do
-  puts "Updating the bundles with the script"
-  system './update_bundles'
+task :setup => "bundles:update" do
   cd 'bundle' do
     puts "Setting up Snipmate:"
     d = 'snipmate'
