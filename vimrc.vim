@@ -49,6 +49,7 @@ autocmd User Rails/*.haml set foldmethod=indent
 autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
 autocmd FileType ruby set expandtab
 autocmd FileType vim set expandtab ts=2 sw=2 sts=2
+autocmd FileType markdown set expandtab ts=2 sw=2 sts=2
 
 
 set wildmenu
@@ -92,7 +93,7 @@ nmap <F3> :TlistToggle <CR>
 
 set tw=78
 
-"set list listchars=tab:▸·,trail:·,eol:¬
+set list listchars=tab:▸·,trail:·,eol:¬
 highlight SpecialKey guifg=#333333 ctermfg=DarkGray
 
 "language C
