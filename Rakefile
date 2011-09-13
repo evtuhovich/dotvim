@@ -6,51 +6,14 @@ task :default => :setup do
 end
 
 desc "Setting up the plugins' directories"
-task :setup => ["bundles:update", "bundles:gemmed:install"] do
-  cd 'bundle' do
-    puts "Setting up Snipmate:"
-    'snipmate'.tap do |d|
-      puts "Linking 'snipmate.vim' to '#{d}'"
-      ln_s('snipmate.vim', d) unless File.exist? d
-      cd d do
-        puts "Making snippets' directory"
-        'snippets'.tap do |d|
-          mkdir d unless File.exist? d
-        end
-      end
-      cd 'snipmate-snippets' do
-        system 'rake'
-      end
-    end
-  end
-
-  puts 'Setting up Pathogen:'
-  File.join('autoload', 'pathogen.vim').tap do |n|
-    File.expand_path(File.join('bundle', 'vim-pathogen', n)).tap do |nn|
-      puts "Linking #{nn} ->  #{n}"
-      begin
-        ln_sf nn, n
-      rescue => error
-        if error.class == Errno::ENOENT
-          mkdir_p File.dirname n
-          retry
-        elsif error.class == Errno::ENOTDIR
-          remove_entry_secure File.dirname n
-          retry
-        else
-          puts error.inspect
-        end
-      end
-    end
-  end
-end
+task :setup => ["bundles:update", "bundles:snipmate", "bundles:pathogen", "bundles:gemmed:install"]
 
 # A convenience stub 
 desc "Update the installed plugins"
-task :update => ["bundles:update", "bundles:gemmed:update"]
+task :update => ["bundles:update", "bundles:snipmate", "bundles:pathogen", "bundles:gemmed:update"]
 
 desc "Remove all generated/downloaded content"
-task :clean => "bundles:gemmed:cleanup" do
+task :distclean => "bundles:gemmed:cleanup" do
   puts 'Removing the generated content:'
   ['bundle', File.join('autoload', 'pathogen.vim')].each do |d|
     puts "  -> #{d}"
@@ -62,6 +25,6 @@ task :clean => "bundles:gemmed:cleanup" do
 end
 
 desc "Rebuild everything"
-task :reinit => [:clean, :setup] do
+task :reinit => [:distclean, :setup] do
   puts "Your setup is now rebuilt"
 end

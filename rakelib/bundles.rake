@@ -72,11 +72,55 @@ namespace :bundles do
       task :reinstall => [:uninstall, :install]
 
       directory cfg.gem_plugin_dir
-      desc "cleaning up after gemmed plugins"
+      desc "clean up after gemmed plugins"
       task :cleanup => [cfg.gem_plugin_dir, :uninstall] do
         remove_entry_secure cfg.gem_plugin_dir
       end
+    end
 
+    # Some hidden utility tasks:
+    #
+    # Snipmate snippets dirs linkage
+    task :snipmate => cfg.bundles_dir do
+      cd cfg.bundles_dir do
+        puts "Setting up Snipmate:"
+        'snipmate'.tap do |d|
+          puts "Linking 'snipmate.vim' to '#{d}'"
+          ln_s('snipmate.vim', d) unless File.exist? d
+          cd d do
+            puts "Making snippets' directory"
+            'snippets'.tap do |d|
+              mkdir d unless File.exist? d
+            end
+          end
+          cd 'snipmate-snippets' do
+            system 'rake'
+          end
+        end
+      end
+    end
+   
+    # Pathogen additional setup
+    task :pathogen => cfg.bundles_dir do
+      puts 'Setting up Pathogen:'
+      File.join('autoload', 'pathogen.vim').tap do |n|
+        File.expand_path(File.join(cfg.bundles_dir, 'vim-pathogen', n)).tap do |nn|
+          puts "Linking #{nn} ->  #{n}"
+          begin
+            ln_sf nn, n
+          rescue => error
+            if error.class == Errno::ENOENT
+              mkdir_p File.dirname n
+              retry
+            elsif error.class == Errno::ENOTDIR
+              remove_entry_secure File.dirname n
+              retry
+            else
+              puts error.inspect
+            end
+          end
+        end
+      end
     end
   end
 end
