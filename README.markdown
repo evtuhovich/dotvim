@@ -1,4 +1,4 @@
-# argent-smith's .vim configuration framework
+# .vim configurat'o'matic framework
 
 Inspired by and forked from [evtuhovich/dotvim][1]
 
