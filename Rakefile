@@ -6,7 +6,7 @@ task :default => :setup do
 end
 
 desc "Settup the plugins' directories"
-task :setup => "bundles:update" do
+task :setup => ["bundles:update", "bundles:gemmed:install"] do
   cd 'bundle' do
     puts "Setting up Snipmate:"
     d = 'snipmate'
@@ -43,10 +43,10 @@ end
 
 # A convenience stub 
 desc "Update the installed plugins"
-task :update => :setup
+task :update => ["bundles:update", "bundles:gemmed:update"]
 
 desc "Remove all generated/downloaded content"
-task :clean do
+task :clean => "bundles:gemmed:cleanup" do
   puts 'Removing the generated content:'
   ['bundle', File.join('autoload', 'pathogen.vim')].each do |d|
     puts "  -> #{d}"

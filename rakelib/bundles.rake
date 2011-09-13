@@ -3,24 +3,11 @@
 # The Idea by Ivan Evtukhovich
 # Rakefile edition by Pavel Argentov
 
+$:.unshift File.dirname __FILE__
+require 'cfg'
+require 'open-uri'
+
 namespace :bundles do
-
-  require 'open-uri'
-
-  class Cfg
-    attr :git_bundles
-    attr :vim_org_scripts
-    attr :bundles_dir
-
-    load 'plugins.cfg'
-    include PluginsCfg
-
-    def initialize
-      @git_bundles      = GIT_BUNDLES
-      @vim_org_scripts  = VIM_ORG_SCRIPTS
-      @bundles_dir      = File.join(File.dirname(__FILE__), "..", "bundle")
-    end
-  end
 
   cfg = Cfg.new
 
@@ -58,5 +45,33 @@ namespace :bundles do
         `vim #{params.join(' ')} -c"quit"`
       end
     end
+  end
+
+  namespace :gemmed do
+    [
+      :install,
+      :update,
+      :uninstall
+    ].each do |sym|
+      s = sym.to_s
+      desc "#{s} plugins available via rubygems"
+      task sym do
+        cfg.gem_plugins.each do |gem, cmd|
+          c = "gem #{s} #{gem} #{"&& #{cmd}" unless sym == :uninstall}"
+          puts c
+          system c
+        end
+      end
+    end
+
+    desc "reinstall plugins available via rubygems"
+    task :reinstall => [:uninstall, :install]
+
+    directory cfg.gem_plugin_dir
+    desc "cleaning up after gemmed plugins"
+    task :cleanup => [cfg.gem_plugin_dir, :uninstall] do
+      remove_entry_secure cfg.gem_plugin_dir
+    end
+
   end
 end

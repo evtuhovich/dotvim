@@ -12,4 +12,9 @@ Before doing anything else please `git clone` this to your favorite place.
 
 For raking options see `rake -T`
 
+## plugins.cfg
+
+This file contains required plugins declaration. See the documenting comments 
+in there.
+
 [1]: https://github.com/evtuhovich/dotvim "Ivan Evtukhovich's .vim" 
