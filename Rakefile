@@ -5,38 +5,42 @@ task :default => :setup do
   puts "The directories are set up successfully"
 end
 
-desc "Settup the plugins' directories"
+desc "Setting up the plugins' directories"
 task :setup => ["bundles:update", "bundles:gemmed:install"] do
   cd 'bundle' do
     puts "Setting up Snipmate:"
-    d = 'snipmate'
-    puts "Linking 'snipmate.vim' to '#{d}'"
-    ln_s('snipmate.vim', d) unless File.exist? d
-    cd d do
-      puts "Making snippets' directory"
-      d = 'snippets'
-      mkdir d unless File.exist? d
-    end
-    cd 'snipmate-snippets' do
-      system 'rake'
+    'snipmate'.tap do |d|
+      puts "Linking 'snipmate.vim' to '#{d}'"
+      ln_s('snipmate.vim', d) unless File.exist? d
+      cd d do
+        puts "Making snippets' directory"
+        'snippets'.tap do |d|
+          mkdir d unless File.exist? d
+        end
+      end
+      cd 'snipmate-snippets' do
+        system 'rake'
+      end
     end
   end
 
   puts 'Setting up Pathogen:'
-  n = File.join 'autoload', 'pathogen.vim'
-  nn = File.expand_path File.join 'bundle', 'vim-pathogen', n
-  puts "Linking #{nn} ->  #{n}"
-  begin
-    ln_sf nn, n
-  rescue => error
-    if error.class == Errno::ENOENT
-      mkdir_p File.dirname n
-      retry
-    elsif error.class == Errno::ENOTDIR
-      remove_entry_secure File.dirname n
-      retry
-    else
-      puts error.inspect
+  File.join('autoload', 'pathogen.vim').tap do |n|
+    File.expand_path(File.join('bundle', 'vim-pathogen', n)).tap do |nn|
+      puts "Linking #{nn} ->  #{n}"
+      begin
+        ln_sf nn, n
+      rescue => error
+        if error.class == Errno::ENOENT
+          mkdir_p File.dirname n
+          retry
+        elsif error.class == Errno::ENOTDIR
+          remove_entry_secure File.dirname n
+          retry
+        else
+          puts error.inspect
+        end
+      end
     end
   end
 end
