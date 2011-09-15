@@ -1,5 +1,7 @@
 set nocompatible
 
+let mapleader=","
+
 source $VIMRUNTIME/vimrc_example.vim
 
 set hlsearch
@@ -104,6 +106,7 @@ set tags=./tags,tags,/home/brun/.vim/tags
 let g:rsenseHome="$RSENSE_HOME"
 
 " ruby.vim configuration
+compiler ruby
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
