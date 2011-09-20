@@ -52,6 +52,8 @@ autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
 autocmd FileType ruby set expandtab
 autocmd FileType vim set expandtab ts=2 sw=2 sts=2
 autocmd FileType markdown set expandtab ts=2 sw=2 sts=2
+autocmd FileType cucumber set expandtab ts=2 sw=2 sts=2
+autocmd FileType php set expandtab ts=2 sw=2 sts=2
 
 
 set wildmenu
