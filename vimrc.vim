@@ -41,6 +41,7 @@ autocmd BufRead *.xml,*.aspx,*.htm,*.html,*.config,*.ascx set ts=2 sw=2 ft=xml
 autocmd BufRead *.php set ts=2 sw=2
 autocmd BufRead *.sql set ts=4 sw=4
 autocmd BufRead *.rjs,*.rxml  set ts=2 sw=2 ft=ruby
+autocmd BufRead *.tt          set ts=2 sw=2 ft=eruby
 autocmd BufRead Vagrantfile set ts=2 sw=2 ft=ruby expandtab
 autocmd BufRead *.rb set expandtab
 autocmd BufRead *.cs  set ts=4 sw=4
@@ -49,7 +50,8 @@ autocmd User Rails.javascript* set expandtab ts=4 sw=4 sts=4
 autocmd User Rails/*.coffee set expandtab ts=2 sw=2 sts=2
 autocmd User Rails/*.haml set foldmethod=indent
 autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
-autocmd FileType ruby set expandtab
+autocmd FileType ruby  set expandtab
+autocmd FileType eruby set expandtab
 autocmd FileType vim set expandtab ts=2 sw=2 sts=2
 autocmd FileType markdown set expandtab ts=2 sw=2 sts=2
 autocmd FileType cucumber set expandtab ts=2 sw=2 sts=2
