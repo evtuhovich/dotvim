@@ -83,12 +83,13 @@ nmap <F2> :NERDTreeToggle <CR>
 let Tlist_WinWidth = 50
 nmap <F3> :TlistToggle <CR>
 
+vmap <D-C> :CopyRTF <CR>
 " set grepprg=grep\ $*\ *\ -n\ -r\ --exclude=*.log\ --exclude=tags
 " let g:git_diff_spawn_mode = 2
 
 " trailing whitspaces
 :highlight ExtraWhitespace ctermbg=red guibg=red
-:autocmd BufWinEnter *.rb,*.js,*.haml,*.html match ExtraWhitespace /\s\+$/
+:autocmd BufWinEnter *.rb,*.js,*.haml,*.html,*.otl,*.txt match ExtraWhitespace /\s\+$/
 
 set tw=120
 
@@ -124,10 +125,7 @@ let g:fuf_maxMenuWidth = 140
 
 command Irb :ConqueTermSplit irb
 
-map <silent> <F4> :call BufferList()<CR>
-let g:BufferListWidth = 25
-let g:BufferListMaxWidth = 50
-
+map <silent> <F4> :FufBuffer<CR>
 
 let g:Gitv_OpenHorizontal = 1
 
