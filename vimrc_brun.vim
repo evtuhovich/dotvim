@@ -14,9 +14,9 @@ filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-"set background=dark
-"colorscheme solarized
-colorscheme vividchalk
+colorscheme solarized
+set background=light
+"colorscheme vividchalk
 
 set ignorecase
 syntax on
@@ -120,12 +120,12 @@ if has("autocmd")
   autocmd bufwritepost vimrc_brun.vim source $MYVIMRC
 endif
 
-nmap <Leader>a :FufCoverageFile<CR>
 let g:fuf_maxMenuWidth = 140
 
 command Irb :ConqueTermSplit irb
 
-map <silent> <F4> :FufBuffer<CR>
+nmap <silent> <F4> :FufBuffer<CR>
+nmap <silent> <F5> :FufCoverageFile<CR>
 
 let g:Gitv_OpenHorizontal = 1
 
