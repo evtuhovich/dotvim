@@ -14,9 +14,9 @@ filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-colorscheme solarized
-set background=light
-"colorscheme vividchalk
+"colorscheme solarized
+set background=dark
+colorscheme vividchalk
 
 set ignorecase
 syntax on
