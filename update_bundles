@@ -31,7 +31,8 @@ git_bundles = [
   "https://github.com/gregsexton/gitv.git",
   "https://github.com/kchmck/vim-coffee-script.git",
   "https://github.com/mileszs/ack.vim.git",
-  "https://github.com/aniero/vim-copy-as-rtf.git"
+  "https://github.com/aniero/vim-copy-as-rtf.git",
+  "https://github.com/tangledhelix/vim-octopress.git"
 #  "http://github.com/generalov/KeyboardLayoutSwitcher.git"
 ]
 
