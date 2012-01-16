@@ -126,11 +126,20 @@ let g:fuf_maxMenuWidth = 140
 
 command Irb :ConqueTermSplit irb
 
-nmap <silent> <F4> :FufBuffer<CR>
-nmap <silent> <F5> :FufCoverageFile<CR>
+nmap <silent> <F4> :CtrlPBuffer<CR>
+nmap <silent> <F5> :CtrlP<CR>
 
 let g:Gitv_OpenHorizontal = 1
 
 let g:rails_ctags_arguments="--exclude=log --exclude=tmp --exclude=www --exclude=public"
 
 let ruby_no_expensive = 1
+
+" store ctrlp cache
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.vim/.ctrlp_cache'
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
+
+
+

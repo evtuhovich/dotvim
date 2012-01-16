@@ -33,7 +33,8 @@ git_bundles = [
   "https://github.com/mileszs/ack.vim.git",
   "https://github.com/aniero/vim-copy-as-rtf.git",
   "https://github.com/tangledhelix/vim-octopress.git"
-#  "http://github.com/generalov/KeyboardLayoutSwitcher.git"
+  "https://github.com/Lokaltog/vim-powerline.git",
+  "https://github.com/kien/ctrlp.vim.git"
 ]
 
 vim_org_scripts = [
