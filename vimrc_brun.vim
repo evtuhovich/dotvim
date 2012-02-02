@@ -51,6 +51,8 @@ autocmd User Rails/*.haml set foldmethod=indent
 
 autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
 
+autocmd BufNewFile,BufRead *.markdown setfiletype octopress
+
 set wildmenu
 set wildmode=list:longest
 set wcm=<Tab>
