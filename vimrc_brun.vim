@@ -140,6 +140,8 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME.'/.vim/.ctrlp_cache'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_dotfiles = 0
 
 
 
+let g:Powerline_symbols = 'unicode'
