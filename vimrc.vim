@@ -10,6 +10,7 @@ set incsearch
 set t_Co=256
 set ts=2
 set sw=2
+set et
 
 filetype off
 call pathogen#helptags()
@@ -56,6 +57,7 @@ autocmd FileType vim set expandtab ts=2 sw=2 sts=2
 autocmd FileType markdown set expandtab ts=2 sw=2 sts=2
 autocmd FileType cucumber set expandtab ts=2 sw=2 sts=2
 autocmd FileType php set expandtab ts=2 sw=2 sts=2
+autocmd FileType rpsl set expandtab ts=2 sw=2 sts=2
 
 
 set wildmenu
