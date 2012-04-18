@@ -21,7 +21,6 @@ git_bundles = [
   "git://github.com/vim-ruby/vim-ruby.git",
   "https://github.com/scrooloose/syntastic.git",
   "http://github.com/vim-scripts/matchit.zip.git",
-  "http://github.com/vim-scripts/taglist.vim.git",
   "http://github.com/vimoutliner/vimoutliner.git",
   "https://github.com/vim-scripts/L9.git",
   "https://github.com/vim-scripts/FuzzyFinder.git",
@@ -34,7 +33,8 @@ git_bundles = [
   "https://github.com/aniero/vim-copy-as-rtf.git",
   "https://github.com/tangledhelix/vim-octopress.git",
   "https://github.com/Lokaltog/vim-powerline.git",
-  "https://github.com/kien/ctrlp.vim.git"
+  "https://github.com/kien/ctrlp.vim.git",
+  "https://github.com/timgreen/vim-tagbar.git"
 ]
 
 vim_org_scripts = [

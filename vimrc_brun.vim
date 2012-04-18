@@ -14,9 +14,9 @@ filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-"colorscheme solarized
+colorscheme solarized
 set background=dark
-colorscheme vividchalk
+"colorscheme vividchalk
 
 set ignorecase
 syntax on
@@ -82,8 +82,7 @@ let g:omni_sql_no_default_maps=1
 let NERDTreeWinSize=50
 nmap <F2> :NERDTreeToggle <CR>
 
-let Tlist_WinWidth = 50
-nmap <F3> :TlistToggle <CR>
+nmap <F3> :TagbarToggle <CR>
 
 vmap <D-C> :CopyRTF <CR>
 " set grepprg=grep\ $*\ *\ -n\ -r\ --exclude=*.log\ --exclude=tags
@@ -145,3 +144,10 @@ let g:ctrlp_dotfiles = 0
 
 
 let g:Powerline_symbols = 'unicode'
+
+" tagbar config
+let g:tagbar_autoclose = 0
+let g:tagbar_left = 1
+let g:tagbar_autoshowtag = 1
+let g:tagbar_updateonsave_maxlines = 10000
+set updatetime=500
