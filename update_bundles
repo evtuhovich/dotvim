@@ -17,16 +17,13 @@ git_bundles = [
   "http://github.com/tpope/vim-unimpaired.git",
   "git://github.com/tsaleh/vim-align.git",
   "git://github.com/tsaleh/vim-shoulda.git",
-  "git://github.com/tsaleh/vim-tcomment.git",
+  "https://github.com/vim-scripts/tComment.git",
   "git://github.com/vim-ruby/vim-ruby.git",
   "https://github.com/scrooloose/syntastic.git",
   "http://github.com/vim-scripts/matchit.zip.git",
   "http://github.com/vimoutliner/vimoutliner.git",
-  "https://github.com/vim-scripts/L9.git",
-  "https://github.com/vim-scripts/FuzzyFinder.git",
   "https://github.com/vim-scripts/Conque-Shell.git",
   "https://github.com/altercation/vim-colors-solarized.git",
-  "https://github.com/vim-scripts/bufferlist.vim.git",
   "https://github.com/gregsexton/gitv.git",
   "https://github.com/kchmck/vim-coffee-script.git",
   "https://github.com/mileszs/ack.vim.git",
@@ -34,12 +31,9 @@ git_bundles = [
   "https://github.com/tangledhelix/vim-octopress.git",
   "https://github.com/Lokaltog/vim-powerline.git",
   "https://github.com/kien/ctrlp.vim.git",
-  "https://github.com/timgreen/vim-tagbar.git"
-]
-
-vim_org_scripts = [
-  ["IndexedSearch", "7062",  "plugin"],
-  ["jquery",        "12107", "syntax"],
+  "https://github.com/timgreen/vim-tagbar.git",
+  "https://github.com/henrik/vim-indexed-search.git",
+  "https://github.com/nono/jquery.vim"
 ]
 
 require 'fileutils'
@@ -61,15 +55,6 @@ git_bundles.each do |url|
     puts `cd #{dir} && git pull`
   else
     puts `git clone #{url} #{dir}`
-  end
-end
-
-vim_org_scripts.each do |name, script_id, script_type|
-  puts "  Downloading #{name}"
-  local_file = File.join(name, script_type, "#{name}.vim")
-  FileUtils.mkdir_p(File.dirname(local_file))
-  File.open(local_file, "w") do |file|
-    file << open("http://www.vim.org/scripts/download_script.php?src_id=#{script_id}").read
   end
 end
 
