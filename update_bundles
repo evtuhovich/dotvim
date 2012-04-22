@@ -47,15 +47,23 @@ FileUtils.cd(bundles_dir)
 #puts "Trashing everything (lookout!)"
 #Dir["*"].each {|d| FileUtils.rm_rf d }
 
+all_dirs = Dir['*']
+
 git_bundles.each do |url|
   dir = url.split('/').last.sub(/\.git$/, '')
 
+	all_dirs.delete dir
   puts "  Unpacking #{url} into #{dir}"
   if File.exist? dir
     puts `cd #{dir} && git pull`
   else
     puts `git clone #{url} #{dir}`
   end
+end
+
+all_dirs.each do |dir|
+  puts "  Remove unused dir #{dir}"
+  FileUtils.rm_rf dir
 end
 
 # update helptags
