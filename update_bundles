@@ -33,7 +33,8 @@ git_bundles = [
   "https://github.com/kien/ctrlp.vim.git",
   "https://github.com/timgreen/vim-tagbar.git",
   "https://github.com/henrik/vim-indexed-search.git",
-  "https://github.com/nono/jquery.vim"
+  "https://github.com/nono/jquery.vim",
+  "https://github.com/vim-scripts/cscope_macros.vim.git"
 ]
 
 require 'fileutils'
