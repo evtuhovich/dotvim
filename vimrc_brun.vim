@@ -89,13 +89,14 @@ vmap <D-C> :CopyRTF <CR>
 " let g:git_diff_spawn_mode = 2
 
 " trailing whitspaces
-:highlight ExtraWhitespace ctermbg=red guibg=red
-:autocmd BufWinEnter *.rb,*.js,*.haml,*.html,*.otl,*.txt match ExtraWhitespace /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter *.rb,*.js,*.haml,*.html,*.otl,*.txt match ExtraWhitespace /\s\+$/
 
 set tw=120
 
 set list listchars=tab:▸·,trail:·,eol:¬
-highlight SpecialKey guifg=#333333 ctermfg=DarkGray
+highlight SpecialKey guifg=#839496 ctermfg=DarkGray guibg=#404040
+
 
 language C
 
@@ -115,15 +116,17 @@ vmap <C-k> [egv
 
 vmap <C-l> >gv
 vmap <C-h> <gv
-" Source the vimrc file after saving it
-if has("autocmd")
+"
+augroup reread_vimrc
+  autocmd!
   autocmd bufwritepost .vimrc source $MYVIMRC
   autocmd bufwritepost vimrc_brun.vim source $MYVIMRC
-endif
+augroup END
+
 
 let g:fuf_maxMenuWidth = 140
 
-command Irb :ConqueTermSplit irb
+command! Irb :ConqueTermSplit irb
 
 nmap <silent> <F4> :CtrlPBuffer<CR>
 nmap <silent> <F5> :CtrlP<CR>
@@ -140,6 +143,9 @@ let g:ctrlp_cache_dir = $HOME.'/.vim/.ctrlp_cache'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_dotfiles = 0
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\(tmp/sass-cache\)\|\(public/assets\)\|\(tmp/cache\)',
+    \ }
 
 
 
@@ -151,3 +157,6 @@ let g:tagbar_left = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_updateonsave_maxlines = 10000
 set updatetime=500
+
+" chef-vim
+nnoremap <C-a>      :<C-u>ChefFindAny<CR>
