@@ -1,6 +1,6 @@
 set nocompatible
 
-source $VIMRUNTIME/vimrc_example.vim
+" source $VIMRUNTIME/vimrc_example.vim
 
 set hlsearch
 set incsearch
@@ -16,7 +16,14 @@ call pathogen#runtime_append_all_bundles()
 
 colorscheme solarized
 set background=dark
-"colorscheme vividchalk
+
+if has('gui_running')
+  set guifont=Monaco:h16
+  set guioptions-=T
+  set guioptions-=r
+  set guioptions+=c
+  set visualbell
+endif
 
 set ignorecase
 syntax on
@@ -28,22 +35,22 @@ set nobackup
 set nowritebackup
 
 if has("folding")
-	set foldenable
-	set foldmethod=syntax
-	set foldlevel=5
-"	set foldnestmax=2
-	set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-	highlight Folded  guifg=#FFFFFF
+  set foldenable
+  set foldmethod=syntax
+  set foldlevel=5
+" set foldnestmax=2
+  set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
+  highlight Folded  guifg=#FFFFFF
 endif
 
 set fileencodings=utf8,cp1251
-autocmd	BufRead	*.xml,*.aspx,*.htm,*.html,*.config,*.ascx	set ts=2 sw=2 ft=xml
-autocmd	BufRead	*.php	set ts=2 sw=2 fenc=cp1251
-autocmd	BufRead	*.sql	set ts=4 sw=4
-autocmd	BufRead	*.rjs,*.rxml	set ts=2 sw=2 ft=ruby
-autocmd	BufRead	Vagrantfile	set ts=2 sw=2 ft=ruby expandtab
-autocmd BufRead	*.rb set expandtab
-autocmd	BufRead	*.cs	set ts=4 sw=4 fenc=utf8
+autocmd BufRead *.xml,*.aspx,*.htm,*.html,*.config,*.ascx set ts=2 sw=2 ft=xml
+autocmd BufRead *.php set ts=2 sw=2 fenc=cp1251
+autocmd BufRead *.sql set ts=4 sw=4
+autocmd BufRead *.rjs,*.rxml  set ts=2 sw=2 ft=ruby
+autocmd BufRead Vagrantfile set ts=2 sw=2 ft=ruby expandtab
+autocmd BufRead *.rb set expandtab
+autocmd BufRead *.cs  set ts=4 sw=4 fenc=utf8
 autocmd User Rails/config/locales/*.yml set ai
 autocmd User Rails.javascript* set expandtab ts=4 sw=4 sts=4
 autocmd User Rails/*.coffee set expandtab ts=2 sw=2 sts=2
