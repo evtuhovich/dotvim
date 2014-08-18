@@ -10,6 +10,9 @@ set ts=2
 set sw=2
 "Asdfasdf
 
+" share clipboard with OSX
+set clipboard=unnamed
+
 filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
@@ -43,20 +46,25 @@ if has("folding")
   highlight Folded  guifg=#FFFFFF
 endif
 
-set fileencodings=utf8,cp1251
+set fileencodings=utf8
+
+augroup ruby
+	autocmd!
+	autocmd BufRead,BufNewFile *.rb set expandtab
+	autocmd User Rails/config/locales/*.yml set ai
+	autocmd User Rails.javascript* set expandtab ts=4 sw=4 sts=4
+	autocmd User Rails/*.coffee set expandtab ts=2 sw=2 sts=2
+	autocmd User Rails/*.haml set foldmethod=indent
+	autocmd BufRead Vagrantfile set ts=2 sw=2 ft=ruby expandtab
+	let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+augroup END
+
 autocmd BufRead *.xml,*.aspx,*.htm,*.html,*.config,*.ascx set ts=2 sw=2 ft=xml
-autocmd BufRead *.php set ts=2 sw=2 fenc=cp1251
+autocmd BufRead *.php set ts=2 sw=2
 autocmd BufRead *.sql set ts=4 sw=4
-autocmd BufRead *.rjs,*.rxml  set ts=2 sw=2 ft=ruby
-autocmd BufRead Vagrantfile set ts=2 sw=2 ft=ruby expandtab
-autocmd BufRead *.rb set expandtab
-autocmd BufRead *.cs  set ts=4 sw=4 fenc=utf8
-autocmd User Rails/config/locales/*.yml set ai
-autocmd User Rails.javascript* set expandtab ts=4 sw=4 sts=4
-autocmd User Rails/*.coffee set expandtab ts=2 sw=2 sts=2
-autocmd User Rails/*.haml set foldmethod=indent
 
 autocmd BufRead *.erl,*.hrl set expandtab ts=4 sw=4
+
 
 autocmd BufNewFile,BufRead *.markdown setfiletype octopress
 
@@ -165,5 +173,13 @@ let g:tagbar_autoshowtag = 1
 let g:tagbar_updateonsave_maxlines = 10000
 set updatetime=500
 
+" vim-json
+let g:vim_json_syntax_conceal = 0
+
+
 " chef-vim
 nnoremap <C-a>      :<C-u>ChefFindAny<CR>
+
+if filereadable(".vim")
+    so .vim
+endif

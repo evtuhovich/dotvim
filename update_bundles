@@ -35,7 +35,11 @@ git_bundles = [
   "https://github.com/henrik/vim-indexed-search.git",
   "https://github.com/nono/jquery.vim",
   "https://github.com/Lokaltog/vim-easymotion.git",
-  "git://github.com/vim-scripts/chef.vim.git"
+  "git://github.com/vim-scripts/chef.vim.git",
+  "git@github.com:elzr/vim-json.git",
+  "git@github.com:jnwhiteh/vim-golang.git",
+  "git@github.com:slim-template/vim-slim.git",
+  "git@github.com:PProvost/vim-ps1.git",
 ]
 
 require 'fileutils'
