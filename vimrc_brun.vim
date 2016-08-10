@@ -14,8 +14,50 @@ set sw=2
 set clipboard=unnamed
 
 filetype off
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+
+call plug#begin('~/.vim/bundle')
+  Plug 'astashov/vim-ruby-debugger'
+  Plug 'chase/vim-ansible-yaml'
+  Plug 'majutsushi/tagbar',
+  Plug 'msanders/snipmate.vim'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'scrooloose/nerdtree'
+  Plug 'timcharper/textile.vim'
+  Plug 'tpope/vim-cucumber'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-git'
+  Plug 'tpope/vim-haml'
+  Plug 'tpope/vim-markdown'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-vividchalk'
+  Plug 'tsaleh/vim-align'
+  Plug 'tsaleh/vim-shoulda'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'vim-scripts/chef.vim'
+  Plug 'zerowidth/vim-copy-as-rtf'
+  Plug 'PProvost/vim-ps1'
+  Plug 'elzr/vim-json'
+  Plug 'jnwhiteh/vim-golang'
+  Plug 'slim-template/vim-slim'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'vim-scripts/matchit.zip'
+  Plug 'vimoutliner/vimoutliner'
+  Plug 'Lokaltog/vim-easymotion'
+  Plug 'Lokaltog/vim-powerline'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'gregsexton/gitv'
+  Plug 'henrik/vim-indexed-search'
+  Plug 'kchmck/vim-coffee-script'
+  Plug 'kien/ctrlp.vim'
+  Plug 'mileszs/ack.vim'
+  Plug 'nono/jquery.vim',
+  Plug 'scrooloose/syntastic'
+  Plug 'tangledhelix/vim-octopress'
+  Plug 'vim-scripts/Conque-Shell'
+  Plug 'vim-scripts/tComment'
+call plug#end()
 
 colorscheme solarized
 set background=dark
