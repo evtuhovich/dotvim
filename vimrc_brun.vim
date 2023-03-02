@@ -16,34 +16,27 @@ set clipboard=unnamed
 filetype off
 
 call plug#begin('~/.vim/bundle')
-  Plug 'astashov/vim-ruby-debugger'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'othree/xml.vim'
   Plug 'chase/vim-ansible-yaml'
   Plug 'majutsushi/tagbar',
   Plug 'msanders/snipmate.vim'
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/nerdtree'
   Plug 'timcharper/textile.vim'
-  Plug 'tpope/vim-cucumber'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-git'
-  Plug 'tpope/vim-haml'
-  Plug 'tpope/vim-markdown'
-  Plug 'tpope/vim-rails'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-vividchalk'
   Plug 'tsaleh/vim-align'
-  Plug 'tsaleh/vim-shoulda'
   Plug 'vim-ruby/vim-ruby'
-  Plug 'vim-scripts/chef.vim'
-  Plug 'zerowidth/vim-copy-as-rtf'
   Plug 'PProvost/vim-ps1'
   Plug 'elzr/vim-json'
   Plug 'jnwhiteh/vim-golang'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-unimpaired'
   Plug 'vim-scripts/matchit.zip'
-  Plug 'vimoutliner/vimoutliner'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'Lokaltog/vim-powerline'
   Plug 'altercation/vim-colors-solarized'
@@ -52,15 +45,22 @@ call plug#begin('~/.vim/bundle')
   Plug 'kchmck/vim-coffee-script'
   Plug 'kien/ctrlp.vim'
   Plug 'mileszs/ack.vim'
-  Plug 'nono/jquery.vim',
   Plug 'scrooloose/syntastic'
-  Plug 'tangledhelix/vim-octopress'
   Plug 'vim-scripts/Conque-Shell'
   Plug 'vim-scripts/tComment'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'ibhagwan/fzf-lua'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'godlygeek/tabular'  " needed by 'preservim/vim-markdown'
+  Plug 'nvim-lua/plenary.nvim' " needed by obsidian.nvim
+  Plug 'epwalsh/obsidian.nvim'
 call plug#end()
 
 colorscheme solarized
-set background=dark
+set background=light
 
 if has('gui_running')
   set guifont=Monaco:h16
@@ -101,7 +101,7 @@ augroup ruby
 	let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 augroup END
 
-autocmd BufRead *.xml,*.aspx,*.htm,*.html,*.config,*.ascx set ts=2 sw=2 ft=xml
+autocmd BufRead *.xml,*.aspx,*.htm,*.html,*.config,*.ascx set ts=4 sw=4 expandtab ft=xml
 autocmd BufRead *.php set ts=2 sw=2
 autocmd BufRead *.sql set ts=4 sw=4
 
@@ -139,7 +139,7 @@ let g:omni_sql_no_default_maps=1
 let NERDTreeWinSize=50
 nmap <F2> :NERDTreeToggle <CR>
 
-nmap <F3> :TagbarToggle <CR>
+nmap <F3> :FZF <CR>
 
 vmap <D-C> :CopyRTF <CR>
 " set grepprg=grep\ $*\ *\ -n\ -r\ --exclude=*.log\ --exclude=tags
@@ -151,7 +151,8 @@ autocmd BufWinEnter *.rb,*.js,*.haml,*.html,*.otl,*.txt match ExtraWhitespace /\
 
 set tw=120
 
-set list listchars=tab:▸·,trail:·,eol:¬
+" set list listchars=tab:▸·,trail:·,eol:¬
+set list listchars=tab:▸·,trail:·
 highlight SpecialKey guifg=#839496 ctermfg=DarkGray guibg=#404040
 
 
@@ -167,6 +168,8 @@ let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
+
+let g:kb_notes_path=expand('~/Projects/evtuhovich/dendron/vault')
 " unimpaired plugin need for text bubbling
 vmap <C-j> ]egv
 vmap <C-k> [egv
@@ -225,3 +228,7 @@ nnoremap <C-a>      :<C-u>ChefFindAny<CR>
 if filereadable(".vim")
     so .vim
 endif
+
+set exrc
+
+luafile /Users/brun/.config/nvim/luainit.lua
