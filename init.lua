@@ -234,7 +234,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 vim.o.list = true
-vim.o.listchars = 'trail:·'
+vim.o.listchars = 'tab:> ,trail:·'
 
 -- [[ Basic Keymaps ]]
 
