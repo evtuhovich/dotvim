@@ -228,7 +228,7 @@ vim.o.timeout = true
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menuone,longest'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
@@ -511,16 +511,6 @@ require("obsidian").setup({
   notes_subdir = "docs",
 })
 
-local cmp = require'cmp'
-cmp.setup({
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    })
-})
 
 vim.keymap.set(
   "n",
@@ -545,6 +535,8 @@ require("nvim-treesitter.configs").setup({
 
 vim.keymap.set('n', '<F2>', ":Neotree<CR>")
 
-
+vim.o.wildmenu = true
+vim.o.wildmode = 'longest:full'
+-- vim.o.wildoptions = 'full'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
