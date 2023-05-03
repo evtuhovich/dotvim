@@ -127,8 +127,8 @@ require('lazy').setup({
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
-        theme = 'solarized',
+        icons_enabled = true,
+--        theme = 'zellner',
         component_separators = '|',
         section_separators = '',
       },
@@ -536,7 +536,7 @@ require("nvim-treesitter.configs").setup({
 vim.keymap.set('n', '<F2>', ":Neotree<CR>")
 
 vim.o.wildmenu = true
-vim.o.wildmode = 'longest:full'
+vim.o.wildmode = 'list:longest'
 -- vim.o.wildoptions = 'full'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
