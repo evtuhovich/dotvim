@@ -39,8 +39,8 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+-- vim.g.mapleader = ' '
+-- vim.g.maplocalleader = ' '
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -509,6 +509,11 @@ require("obsidian").setup({
     folder = "journal/" .. os.date("%Y")
   },
   notes_subdir = "docs",
+  templates = {
+    subdir = "_layouts",
+    date_format = "%Y-%m-%d, %a",
+    time_format = "%H:%M",
+  },
 })
 
 
@@ -524,6 +529,16 @@ vim.keymap.set(
   end,
   { noremap = false, expr = true}
 )
+
+vim.keymap.set("n", "<leader>oq", ":ObsidianQuickSwitch<CR>")
+vim.keymap.set("n", "<leader>ot", ":ObsidianToday<CR>")
+vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>")
+
+vim.keymap.set("n", "<leader>od", "i<C-R>=strftime('[[%Y.%m.%d]]')<CR><Esc>")
+vim.keymap.set("i", "<leader>od", "<C-R>=strftime('[[%Y.%m-%d]]')<CR>")
+
+vim.keymap.set("n", "<leader>oc", "i<C-R>=strftime('%H:%M')<CR><Esc>")
+vim.keymap.set("i", "<leader>oc", "<C-R>=strftime('%H:%M')<CR>")
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = { "markdown", "markdown_inline", ... },
