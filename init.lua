@@ -257,6 +257,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- [[Configure Spellchecking]]
+
+vim.o.spell = true
+vim.o.spelllang = 'ru,en'
+
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
