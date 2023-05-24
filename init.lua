@@ -536,15 +536,27 @@ vim.keymap.set(
   { noremap = false, expr = true}
 )
 
-vim.keymap.set("n", "<leader>oq", ":ObsidianQuickSwitch<CR>")
-vim.keymap.set("n", "<leader>ot", ":ObsidianToday<CR>")
-vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>")
+local wk = require("which-key")
 
-vim.keymap.set("n", "<leader>od", "i<C-R>=strftime('[[%Y.%m.%d]]')<CR><Esc>")
-vim.keymap.set("i", "<leader>od", "<C-R>=strftime('[[%Y.%m-%d]]')<CR>")
+wk.register({
+  o = {
+    name = "Obsidian",
+    q = {":ObsidianQuickSwitch<CR>", "Obsidian [Q]uick Switch"},
+    t = {":ObsidianToday<CR>", "Obsidian [T]oday"},
+    b = {":ObsidianBacklinks<CR>", "Obsidian [B]acklinks"},
+    c = {"i<C-R>=strftime('%H:%M')<CR><Esc>", "Insert [C]urrent time in Obsidian"},
+    d = {"i<C-R>=strftime('[[%Y.%m.%d]]')<CR><Esc>", "Insert current [D]ate in Obsidian"}
+  }
+}, {prefix = "<leader>"})
 
-vim.keymap.set("n", "<leader>oc", "i<C-R>=strftime('%H:%M')<CR><Esc>")
-vim.keymap.set("i", "<leader>oc", "<C-R>=strftime('%H:%M')<CR>")
+
+wk.register({
+  o = {
+    name = "Obsidian",
+  d = {"<C-R>=strftime('[[%Y.%m-%d]]')<CR>", "Insert current [D]ate in Obsidian"},
+  c = {"<C-R>=strftime('%H:%M')<CR>", "Insert [C]urrent time in Obsidian"}
+  }
+}, {prefix = "<leader>", mode = "i"})
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = { "markdown", "markdown_inline", ... },
