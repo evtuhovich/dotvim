@@ -553,7 +553,7 @@ wk.register({
 wk.register({
   o = {
     name = "Obsidian",
-  d = {"<C-R>=strftime('[[%Y.%m-%d]]')<CR>", "Insert current [D]ate in Obsidian"},
+  d = {"<C-R>=strftime('[[%Y.%m.%d]]')<CR>", "Insert current [D]ate in Obsidian"},
   c = {"<C-R>=strftime('%H:%M')<CR>", "Insert [C]urrent time in Obsidian"}
   }
 }, {prefix = "<leader>", mode = "i"})
