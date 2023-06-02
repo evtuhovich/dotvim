@@ -512,12 +512,13 @@ require("obsidian").setup({
     nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
   },
   daily_notes = {
-    folder = "journal/" .. os.date("%Y")
+    folder = "journal/" .. os.date("%Y"),
+    date_format = "%Y.%m.%d"
   },
   notes_subdir = "docs",
   templates = {
     subdir = "_layouts",
-    date_format = "%Y-%m-%d, %a",
+    date_format = "%Y-%m-%d",
     time_format = "%H:%M",
   },
 })
