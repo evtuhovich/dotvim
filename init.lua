@@ -69,6 +69,7 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  { 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim' },
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -327,6 +328,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.o.spell = true
 vim.o.spelllang = 'ru,en'
+
+-- [[ Configure Neogit ]]
+
+require('neogit').setup {}
 
 
 -- [[ Configure Telescope ]]
