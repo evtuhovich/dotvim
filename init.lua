@@ -69,7 +69,7 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-  { 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim' },
+  { 'NeogitOrg/neogit',        dependencies = 'nvim-lua/plenary.nvim' },
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -95,9 +95,9 @@ require('lazy').setup({
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
-  {'akinsho/toggleterm.nvim', version = "*", config = true},
+  { 'akinsho/toggleterm.nvim', version = "*",                         config = true },
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',    opts = {} },
   { -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -111,22 +111,18 @@ require('lazy').setup({
       },
     },
   },
-
-  { -- Theme inspired by Atom
-    'altercation/vim-colors-solarized',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'solarized'
-    end,
+  {
+    'sainnhe/everforest',
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
   },
-
-  { -- Set lualine as statusline
+  {                  -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = true,
---        theme = 'zellner',
+        --        theme = 'zellner',
         component_separators = '|',
         section_separators = '',
       },
@@ -144,7 +140,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',         opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -191,7 +187,7 @@ require('lazy').setup({
       fold_markers = { '', '' },
       wrap = false,
       keymaps = { -- These keymaps can be a string or a table for multiple keys
-        close = {"<Esc>", "q"},
+        close = { "<Esc>", "q" },
         goto_location = "<Cr>",
         focus_location = "o",
         hover_symbol = "<C-space>",
@@ -261,6 +257,7 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+vim.cmd('colorscheme everforest')
 -- Set highlight on search
 vim.o.hlsearch = true
 
@@ -492,6 +489,8 @@ end
 local servers = {
   clangd = {},
   gopls = {},
+  -- ruby_ls = {},
+  solargraph = {},
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
@@ -606,7 +605,7 @@ vim.keymap.set(
       return "gf"
     end
   end,
-  { noremap = false, expr = true}
+  { noremap = false, expr = true }
 )
 
 local wk = require("which-key")
@@ -614,22 +613,22 @@ local wk = require("which-key")
 wk.register({
   o = {
     name = "Obsidian",
-    q = {":ObsidianQuickSwitch<CR>", "Obsidian [Q]uick Switch"},
-    t = {":ObsidianToday<CR>", "Obsidian [T]oday"},
-    b = {":ObsidianBacklinks<CR>", "Obsidian [B]acklinks"},
-    c = {"i<C-R>=strftime('%H:%M')<CR><Esc>", "Insert [C]urrent time in Obsidian"},
-    d = {"i<C-R>=strftime('[[%Y.%m.%d]]')<CR><Esc>", "Insert current [D]ate in Obsidian"}
+    q = { ":ObsidianQuickSwitch<CR>", "Obsidian [Q]uick Switch" },
+    t = { ":ObsidianToday<CR>", "Obsidian [T]oday" },
+    b = { ":ObsidianBacklinks<CR>", "Obsidian [B]acklinks" },
+    c = { "i<C-R>=strftime('%H:%M')<CR><Esc>", "Insert [C]urrent time in Obsidian" },
+    d = { "i<C-R>=strftime('[[%Y.%m.%d]]')<CR><Esc>", "Insert current [D]ate in Obsidian" }
   }
-}, {prefix = "<leader>"})
+}, { prefix = "<leader>" })
 
 
 wk.register({
   o = {
     name = "Obsidian",
-  d = {"<C-R>=strftime('[[%Y.%m.%d]]')<CR>", "Insert current [D]ate in Obsidian"},
-  c = {"<C-R>=strftime('%H:%M')<CR>", "Insert [C]urrent time in Obsidian"}
+    d = { "<C-R>=strftime('[[%Y.%m.%d]]')<CR>", "Insert current [D]ate in Obsidian" },
+    c = { "<C-R>=strftime('%H:%M')<CR>", "Insert [C]urrent time in Obsidian" }
   }
-}, {prefix = "<leader>", mode = "i"})
+}, { prefix = "<leader>", mode = "i" })
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = { "markdown", "markdown_inline", ... },
