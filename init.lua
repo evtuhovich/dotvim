@@ -592,21 +592,9 @@ require("obsidian").setup({
     date_format = "%Y-%m-%d",
     time_format = "%H:%M",
   },
+  mappings = {},
 })
 
-
-vim.keymap.set(
-  "n",
-  "gf",
-  function()
-    if require('obsidian').util.cursor_on_markdown_link() then
-      return "<cmd>ObsidianFollowLink<CR>"
-    else
-      return "gf"
-    end
-  end,
-  { noremap = false, expr = true }
-)
 
 local wk = require("which-key")
 
