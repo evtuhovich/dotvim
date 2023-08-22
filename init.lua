@@ -67,8 +67,6 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
   { 'NeogitOrg/neogit',        dependencies = 'nvim-lua/plenary.nvim' },
 
   -- Detect tabstop and shiftwidth automatically
