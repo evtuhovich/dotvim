@@ -131,10 +131,6 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
   },
 
   -- "gc" to comment visual regions/lines
@@ -328,7 +324,11 @@ vim.o.spelllang = 'ru,en'
 
 require('neogit').setup {}
 
-
+require("ibl").setup {
+      indent = {
+        char = '┊',
+      },
+    }
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
