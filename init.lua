@@ -82,7 +82,7 @@ require('lazy').setup({
       "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
       enabled = true,
     },
-    build = function() require("gitlab.server").build(true) end,  -- Builds the Go binary
+    build = function() require("gitlab.server").build(true) end, -- Builds the Go binary
     config = function()
       require("gitlab").setup({
         reviewer = "diffview",
@@ -105,19 +105,6 @@ require('lazy').setup({
           relative = "editor", -- Position of tree split relative to "editor" or "window"
           resolved = '✓', -- Symbol to show next to resolved discussions
           unresolved = '✖', -- Symbol to show next to unresolved discussions
-        },
-        review_pane = { -- Specific settings for different reviewers
-          delta = {
-            added_file = "", -- The symbol to show next to added files
-            modified_file = "", -- The symbol to show next to modified files
-            removed_file = "", -- The symbol to show next to removed files
-          }
-        },
-        dialogue = { -- The confirmation dialogue for deleting comments
-          focus_next = { "j", "<Down>", "<Tab>" },
-          focus_prev = { "k", "<Up>", "<S-Tab>" },
-          close = { "<Esc>", "<C-c>" },
-          submit = { "<CR>", "<Space>" },
         },
         pipeline = {
           created = "",
@@ -550,7 +537,7 @@ local servers = {
   gopls = {},
   -- ruby_ls = {},
   solargraph = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
 
@@ -651,7 +638,17 @@ require("obsidian").setup({
     date_format = "%Y-%m-%d",
     time_format = "%H:%M",
   },
-  mappings = {},
+  mappings = {
+    ["gf"] = {
+      action = function()
+        return require("obsidian").util.gf_passthrough()
+      end,
+      opts = { noremap = false, expr = true, buffer = true },
+    },
+  },
+
+--  note_id_func = function(title) return title .. title end,
+
 })
 
 
