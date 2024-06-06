@@ -211,7 +211,7 @@ require('lazy').setup({
   },
 
   {
-    'simrat39/symbols-outline.nvim',
+    'hedyhli/outline.nvim',
     opts = {
       highlight_hovered_item = true,
       show_guides = true,
