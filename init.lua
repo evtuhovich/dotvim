@@ -715,13 +715,11 @@ wk.add({
 
 wk.add({
   {
-    {
-      mode = { "i" },
-      { "<leader>o", group = "Obsidian" },
-      { "<leader>oc", "<C-R>=strftime('%H:%M')<CR>", desc = "Insert [C]urrent time in Obsidian" },
-      { "<leader>od", "<C-R>=strftime('[[%Y.%m.%d]]')<CR>", desc = "Insert current [D]ate in Obsidian" },
-    },
-  }
+    mode = { "i" },
+    { "<leader>o", group = "Obsidian" },
+    { "<leader>oc", "<C-R>=strftime('%H:%M')<CR>", desc = "Insert [C]urrent time in Obsidian" },
+    { "<leader>od", "<C-R>=strftime('[[%Y.%m.%d]]')<CR>", desc = "Insert current [D]ate in Obsidian" },
+  },
 })
 
 require("nvim-treesitter.configs").setup({
