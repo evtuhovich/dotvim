@@ -65,7 +65,17 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
-
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
+  },
   -- Git related plugins
   { 'NeogitOrg/neogit',        dependencies = 'nvim-lua/plenary.nvim' },
 
@@ -691,25 +701,28 @@ require("obsidian").setup({
 
 local wk = require("which-key")
 
-wk.register({
-  o = {
-    name = "Obsidian",
-    q = { ":ObsidianQuickSwitch<CR>", "Obsidian [Q]uick Switch" },
-    t = { ":ObsidianToday<CR>", "Obsidian [T]oday" },
-    b = { ":ObsidianBacklinks<CR>", "Obsidian [B]acklinks" },
-    c = { "i<C-R>=strftime('%H:%M')<CR><Esc>", "Insert [C]urrent time in Obsidian" },
-    d = { "i<C-R>=strftime('[[%Y.%m.%d]]')<CR><Esc>", "Insert current [D]ate in Obsidian" }
+wk.add({
+  {
+    { "<leader>o", group = "Obsidian" },
+    { "<leader>ob", ":ObsidianBacklinks<CR>", desc = "Obsidian [B]acklinks" },
+    { "<leader>oc", "i<C-R>=strftime('%H:%M')<CR><Esc>", desc = "Insert [C]urrent time in Obsidian" },
+    { "<leader>od", "i<C-R>=strftime('[[%Y.%m.%d]]')<CR><Esc>", desc = "Insert current [D]ate in Obsidian" },
+    { "<leader>oq", ":ObsidianQuickSwitch<CR>", desc = "Obsidian [Q]uick Switch" },
+    { "<leader>ot", ":ObsidianToday<CR>", desc = "Obsidian [T]oday" },
   }
-}, { prefix = "<leader>" })
+})
 
 
-wk.register({
-  o = {
-    name = "Obsidian",
-    d = { "<C-R>=strftime('[[%Y.%m.%d]]')<CR>", "Insert current [D]ate in Obsidian" },
-    c = { "<C-R>=strftime('%H:%M')<CR>", "Insert [C]urrent time in Obsidian" }
+wk.add({
+  {
+    {
+      mode = { "i" },
+      { "<leader>o", group = "Obsidian" },
+      { "<leader>oc", "<C-R>=strftime('%H:%M')<CR>", desc = "Insert [C]urrent time in Obsidian" },
+      { "<leader>od", "<C-R>=strftime('[[%Y.%m.%d]]')<CR>", desc = "Insert current [D]ate in Obsidian" },
+    },
   }
-}, { prefix = "<leader>", mode = "i" })
+})
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = { "markdown", "markdown_inline", ... },
@@ -719,7 +732,10 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
-vim.keymap.set('n', '<F2>', ":Neotree<CR>")
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.keymap.set('n', '<F2>', ":NvimTreeToggle<CR>")
 
 vim.o.wildmenu = true
 vim.o.wildmode = 'list:longest'
