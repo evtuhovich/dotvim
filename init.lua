@@ -83,7 +83,7 @@ require('lazy').setup({
   'tpope/vim-sleuth',
   'epwalsh/obsidian.nvim',
 
-  {
+  --[[ {
     "harrisoncramer/gitlab.nvim",
     dependencies = {
       'sindrets/diffview.nvim',
@@ -129,7 +129,7 @@ require('lazy').setup({
         },
       }) -- Uses delta reviewer by default
     end,
-  },
+  } ,]]
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
