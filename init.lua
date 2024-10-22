@@ -745,5 +745,19 @@ vim.keymap.set('n', '<F2>', ":NvimTreeToggle<CR>")
 vim.o.wildmenu = true
 vim.o.wildmode = 'list:longest'
 -- vim.o.wildoptions = 'full'
+
+-- From vim defaults.vim
+-- ---
+-- When editing a file, always jump to the last known cursor position.
+-- Don't do it when the position is invalid, when inside an event handler
+-- (happens when dropping a file on gvim) and for a commit message (it's
+-- likely a different one than last time).
+vim.api.nvim_create_autocmd({'BufWinEnter'}, {
+  desc = 'return cursor to where it was last time closing the file',
+  pattern = '*',
+  command = 'silent! normal! g`"zv',
+})
+
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
