@@ -42,6 +42,11 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- vim.g.mapleader = ' '
 -- vim.g.maplocalleader = ' '
 
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -66,15 +71,13 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = false,
+    "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      require("nvim-tree").setup {}
-    end,
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
   },
   -- Git related plugins
   { 'NeogitOrg/neogit',        dependencies = 'nvim-lua/plenary.nvim' },
@@ -737,10 +740,7 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.keymap.set('n', '<F2>', ":NvimTreeToggle<CR>")
+vim.keymap.set('n', '<F2>', ":Neotree toggle<CR>")
 
 vim.o.wildmenu = true
 vim.o.wildmode = 'list:longest'
