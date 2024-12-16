@@ -204,15 +204,18 @@ require('lazy').setup({
   -- Only load if `make` is available. Make sure you have the system
   -- requirements installed.
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    -- NOTE: If you are having trouble with this installation,
-    --       refer to the README for telescope-fzf-native for more instructions.
-    build = 'make',
-    cond = function()
-      return vim.fn.executable 'make' == 1
-    end,
+    "junegunn/fzf",
+    build = "./install --bin"
   },
-
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      -- calling `setup` is optional for customization
+      require("fzf-lua").setup({})
+    end
+  },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
@@ -411,7 +414,7 @@ require('telescope').setup {
 }
 
 -- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
+-- pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -667,8 +670,8 @@ require("obsidian").setup({
     },
   },
   ui = {
-    enable = true,             -- set to false to disable all additional syntax features
-    update_debounce = 200,     -- update delay after a text change (in milliseconds)
+    enable = true,         -- set to false to disable all additional syntax features
+    update_debounce = 200, -- update delay after a text change (in milliseconds)
     -- Define how various check-boxes are displayed
     checkboxes = {
       -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
@@ -703,9 +706,9 @@ require("obsidian").setup({
       ObsidianHighlightText = { bg = "#75662e" },
     },
   },
-
-  --  note_id_func = function(title) return title .. title end,
-
+  picker = {
+    name = "fzf-lua"
+  }
 })
 
 
@@ -713,12 +716,12 @@ local wk = require("which-key")
 
 wk.add({
   {
-    { "<leader>o", group = "Obsidian" },
-    { "<leader>ob", ":ObsidianBacklinks<CR>", desc = "Obsidian [B]acklinks" },
-    { "<leader>oc", "i<C-R>=strftime('%H:%M')<CR><Esc>", desc = "Insert [C]urrent time in Obsidian" },
+    { "<leader>o",  group = "Obsidian" },
+    { "<leader>ob", ":ObsidianBacklinks<CR>",                   desc = "Obsidian [B]acklinks" },
+    { "<leader>oc", "i<C-R>=strftime('%H:%M')<CR><Esc>",        desc = "Insert [C]urrent time in Obsidian" },
     { "<leader>od", "i<C-R>=strftime('[[%Y.%m.%d]]')<CR><Esc>", desc = "Insert current [D]ate in Obsidian" },
-    { "<leader>oq", ":ObsidianQuickSwitch<CR>", desc = "Obsidian [Q]uick Switch" },
-    { "<leader>ot", ":ObsidianToday<CR>", desc = "Obsidian [T]oday" },
+    { "<leader>oq", ":ObsidianQuickSwitch<CR>",                 desc = "Obsidian [Q]uick Switch" },
+    { "<leader>ot", ":ObsidianToday<CR>",                       desc = "Obsidian [T]oday" },
   }
 })
 
@@ -726,8 +729,8 @@ wk.add({
 wk.add({
   {
     mode = { "i" },
-    { "<leader>o", group = "Obsidian" },
-    { "<leader>oc", "<C-R>=strftime('%H:%M')<CR>", desc = "Insert [C]urrent time in Obsidian" },
+    { "<leader>o",  group = "Obsidian" },
+    { "<leader>oc", "<C-R>=strftime('%H:%M')<CR>",        desc = "Insert [C]urrent time in Obsidian" },
     { "<leader>od", "<C-R>=strftime('[[%Y.%m.%d]]')<CR>", desc = "Insert current [D]ate in Obsidian" },
   },
 })
@@ -752,7 +755,7 @@ vim.o.wildmode = 'list:longest'
 -- Don't do it when the position is invalid, when inside an event handler
 -- (happens when dropping a file on gvim) and for a commit message (it's
 -- likely a different one than last time).
-vim.api.nvim_create_autocmd({'BufWinEnter'}, {
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   desc = 'return cursor to where it was last time closing the file',
   pattern = '*',
   command = 'silent! normal! g`"zv',
