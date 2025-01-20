@@ -46,6 +46,12 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+if vim.g.neovide then
+  vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+end
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -79,11 +85,19 @@ require('lazy').setup({
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     }
   },
+
+  {
+    'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+  },
+
   -- Git related plugins
   { 'NeogitOrg/neogit',        dependencies = 'nvim-lua/plenary.nvim' },
 
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
   'epwalsh/obsidian.nvim',
 
   --[[ {
@@ -175,15 +189,16 @@ require('lazy').setup({
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
   },
-  {                  -- Set lualine as statusline
+  -- Set lualine as statusline
+  {
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = true,
         --        theme = 'zellner',
-        component_separators = '|',
-        section_separators = '',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
       },
     },
   },
@@ -195,7 +210,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',         opts = {} },
+  { 'numToStr/Comment.nvim',  opts = {} },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -393,6 +408,10 @@ vim.o.spelllang = 'ru,en'
 -- [[ Configure Neogit ]]
 
 require('neogit').setup {}
+
+require('barbar').setup {
+  auto_hide = true,
+}
 
 -- require("ibl").setup {
 --   indent = {
