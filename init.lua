@@ -320,6 +320,8 @@ require('lazy').setup({
 -- See `:help vim.o`
 
 vim.cmd('colorscheme everforest')
+vim.o.background = 'light'
+
 -- Set highlight on search
 vim.o.hlsearch = true
 
