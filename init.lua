@@ -86,15 +86,6 @@ require('lazy').setup({
     }
   },
 
-  {
-    'romgrk/barbar.nvim',
-    dependencies = {
-      'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
-      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-    },
-    init = function() vim.g.barbar_auto_setup = false end,
-  },
-
   -- Git related plugins
   { 'NeogitOrg/neogit',        dependencies = 'nvim-lua/plenary.nvim' },
 
@@ -204,9 +195,9 @@ require('lazy').setup({
   },
 
   { -- Add indentation guides even on blank lines
-    -- 'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    opts = {},
   },
 
   -- "gc" to comment visual regions/lines
@@ -408,16 +399,6 @@ vim.o.spelllang = 'ru,en'
 -- [[ Configure Neogit ]]
 
 require('neogit').setup {}
-
-require('barbar').setup {
-  auto_hide = true,
-}
-
--- require("ibl").setup {
---   indent = {
---     char = '┊',
---   },
--- }
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
