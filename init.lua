@@ -87,7 +87,10 @@ require('lazy').setup({
   },
 
   -- Git related plugins
-  { 'NeogitOrg/neogit',        dependencies = 'nvim-lua/plenary.nvim' },
+  {
+    'NeogitOrg/neogit',
+    dependencies = 'nvim-lua/plenary.nvim'
+  },
 
   'epwalsh/obsidian.nvim',
 
@@ -159,7 +162,7 @@ require('lazy').setup({
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
-  { 'akinsho/toggleterm.nvim', version = "*",                         config = true },
+  { 'akinsho/toggleterm.nvim', version = "*", config = true },
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',    opts = {} },
   { -- Adds git releated signs to the gutter, as well as utilities for managing changes
@@ -359,7 +362,7 @@ vim.wo.signcolumn = 'yes'
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 1000
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,longest'
@@ -708,6 +711,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 vim.keymap.set('n', '<F2>', ":Neotree toggle<CR>")
+vim.keymap.set('n', '<F3>', ":FzfLua buffers<CR>")
 
 vim.o.wildmenu = true
 vim.o.wildmode = 'list:longest'
