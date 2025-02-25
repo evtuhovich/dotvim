@@ -407,12 +407,16 @@ require('neogit').setup {}
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'markdown' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'markdown',
+    'markdown_inline' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
 
-  highlight = { enable = true },
+  highlight = {
+--    enable = true,
+--    additional_vim_regex_highlighting = { "markdown" },
+  },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
     enable = true,
@@ -699,14 +703,6 @@ wk.add({
     { "<leader>o",  group = "Obsidian" },
     { "<leader>oc", "<C-R>=strftime('%H:%M')<CR>",        desc = "Insert [C]urrent time in Obsidian" },
     { "<leader>od", "<C-R>=strftime('[[%Y.%m.%d]]')<CR>", desc = "Insert current [D]ate in Obsidian" },
-  },
-})
-
-require("nvim-treesitter.configs").setup({
-  ensure_installed = { "markdown", "markdown_inline", ... },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = { "markdown" },
   },
 })
 
