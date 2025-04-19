@@ -91,9 +91,12 @@ require('lazy').setup({
     'NeogitOrg/neogit',
     dependencies = 'nvim-lua/plenary.nvim'
   },
-
-  'epwalsh/obsidian.nvim',
-
+  {
+    "obsidian-nvim/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+  },
   --[[ {
     "harrisoncramer/gitlab.nvim",
     dependencies = {
@@ -414,8 +417,8 @@ require('nvim-treesitter.configs').setup {
   auto_install = true,
 
   highlight = {
---    enable = true,
---    additional_vim_regex_highlighting = { "markdown" },
+    enable = true,
+    additional_vim_regex_highlighting = false, -- { "markdown" },
   },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
