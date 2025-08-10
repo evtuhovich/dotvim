@@ -602,7 +602,12 @@ cmp.setup {
 }
 
 require("obsidian").setup({
-  dir = "~/Projects/evtuhovich/obsidian",
+  workspaces = {
+    {
+      name = "personal",
+      path = "~/Projects/evtuhovich/obsidian"
+    }
+  },
   disable_frontmatter = true,
   completion = {
     nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
@@ -618,31 +623,10 @@ require("obsidian").setup({
     date_format = "%Y-%m-%d",
     time_format = "%H:%M",
   },
-  mappings = {
-    ["gf"] = {
-      action = function()
-        return require("obsidian").util.gf_passthrough()
-      end,
-      opts = { noremap = false, expr = true, buffer = true },
-    },
-  },
   ui = {
     enable = true,         -- set to false to disable all additional syntax features
     update_debounce = 200, -- update delay after a text change (in milliseconds)
     -- Define how various check-boxes are displayed
-    checkboxes = {
-      -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-      [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-      ["x"] = { char = "", hl_group = "ObsidianDone" },
-      [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-      ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-      -- Replace the above with this if you don't have a patched font:
-      -- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-      -- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
-
-      -- You can also add more custom ones...
-    },
-    -- Use bullet marks for non-checkbox lists.
     bullets = { char = "•", hl_group = "ObsidianBullet" },
     external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
     -- Replace the above with this if you don't have a patched font:
@@ -663,6 +647,9 @@ require("obsidian").setup({
       ObsidianHighlightText = { bg = "#75662e" },
     },
   },
+  checkbox = {
+    order = { " ", "~", "!", ">", "x" },
+  },
   picker = {
     name = "fzf-lua"
   }
@@ -674,11 +661,11 @@ local wk = require("which-key")
 wk.add({
   {
     { "<leader>o",  group = "Obsidian" },
-    { "<leader>ob", ":ObsidianBacklinks<CR>",                   desc = "Obsidian [B]acklinks" },
+    { "<leader>ob", ":Obsidian backlinks<CR>",                   desc = "Obsidian [B]acklinks" },
     { "<leader>oc", "i<C-R>=strftime('%H:%M')<CR><Esc>",        desc = "Insert [C]urrent time in Obsidian" },
     { "<leader>od", "i<C-R>=strftime('[[%Y.%m.%d]]')<CR><Esc>", desc = "Insert current [D]ate in Obsidian" },
-    { "<leader>oq", ":ObsidianQuickSwitch<CR>",                 desc = "Obsidian [Q]uick Switch" },
-    { "<leader>ot", ":ObsidianToday<CR>",                       desc = "Obsidian [T]oday" },
+    { "<leader>oq", ":Obsidian quick_switch<CR>",                 desc = "Obsidian [Q]uick Switch" },
+    { "<leader>ot", ":Obsidian today<CR>",                       desc = "Obsidian [T]oday" },
   }
 })
 
