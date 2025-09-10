@@ -608,6 +608,7 @@ require("obsidian").setup({
       path = "~/Projects/evtuhovich/obsidian"
     }
   },
+  footer = { enabled = false },
   disable_frontmatter = true,
   completion = {
     nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
